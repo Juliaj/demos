@@ -80,7 +80,7 @@ numpy = ">=1.26.4,<3"
 # Explicitly installing pillow through Conda (rather that letting pip pull it an as transitive dependency)
 # to avoid related issue to: libtiff.so.6: undefined symbol: jpeg12_write_raw_data, version LIBJPEG_8.0.
 pillow = "*"
-# Pinned to <26 to satisfy lerobot==0.4.3 requirement (packaging>=24.2,<26.0)
+# Pinned to <26 to satisfy lerobot packaging constraint (packaging>=24.2,<26.0)
 packaging = ">=24.2,<26"
 
 # ROS dependencies
@@ -141,7 +141,9 @@ ros-kilted-rmw-zenoh-cpp = "*"
 
 [pypi-dependencies]
 huggingface-hub = "*"
-lerobot = { version = "==0.4.3", extras = ["feetech"] }
+# LeRobot 0.4.x imports scipy.fftpack.idct; SciPy 2.0 removed fftpack re-exports.
+scipy = ">=1.11.0,<2"
+lerobot = { version = "==0.4.4", extras = ["feetech"] }
 [activation]
 scripts = ["install/setup.bash"]
 
