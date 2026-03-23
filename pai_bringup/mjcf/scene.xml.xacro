@@ -42,10 +42,9 @@
     />
     <material name="table_leg" rgba="0.82 0.84 0.86 1" />
     <material name="table_top" rgba="0.18 0.18 0.2 1" reflectance="0.12" />
-    <material name="tray" rgba="0.95 0.95 0.96 1" reflectance="0.2" />
-    <material name="cube_small" rgba="0.9 0.3 0.2 1" />
-    <material name="cube_medium" rgba="0.2 0.7 0.4 1" />
-    <material name="cube_large" rgba="0.2 0.4 0.9 1" />
+    <material name="mat_surface" rgba="0.12 0.12 0.14 1" reflectance="0.05" />
+    <material name="bowl" rgba="0.95 0.95 0.96 1" reflectance="0.2" />
+    <material name="cube_blue" rgba="0.2 0.4 0.9 1" />
   </asset>
 
   <worldbody>
@@ -58,25 +57,23 @@
       <geom name="leg_bl" type="box" pos="-0.315 -0.285 -0.1965" size="0.015 0.015 0.1835" material="table_leg" />
       <geom name="leg_br" type="box" pos="0.315 -0.285 -0.1965" size="0.015 0.015 0.1835" material="table_leg" />
     </body>
-    <body name="tray" pos="$(arg tray_x) $(arg tray_y) $(arg tray_z)" euler="$(arg tray_yaw) $(arg tray_pitch) $(arg tray_roll)">
-      <!-- Tray 120x160x20mm: short edge (120mm) along x, long edge (160mm) along y facing arm -->
-      <geom name="tray_floor" type="box" size="0.06 0.08 0.0015" material="tray" friction="0.7 0.1 0.1" />
-      <geom name="tray_wall_f" type="box" pos="0 0.0785 0.0115" size="0.06 0.003 0.01" material="tray" />
-      <geom name="tray_wall_b" type="box" pos="0 -0.0785 0.0115" size="0.06 0.003 0.01" material="tray" />
-      <geom name="tray_wall_l" type="box" pos="-0.0585 0 0.0115" size="0.003 0.08 0.01" material="tray" />
-      <geom name="tray_wall_r" type="box" pos="0.0585 0 0.0115" size="0.003 0.08 0.01" material="tray" />
+    <!-- Dark mat on table (matches real WOWROBOT mat) -->
+    <body name="mat" pos="$(arg tray_x) $(arg tray_y) $(arg tray_z)">
+      <geom name="mat_surface" type="box" size="0.18 0.14 0.001" material="mat_surface" friction="0.7 0.1 0.1" />
     </body>
-    <body name="cube_small" pos="$(arg cube_small_x) $(arg cube_small_y) $(arg cube_small_z)">
-      <freejoint name="cube_small_joint" />
-      <geom name="cube_small_geom" type="box" size="0.0125 0.0125 0.0125" mass="0.02" material="cube_small" friction="0.7 0.1 0.1" />
+    <!-- Bowl: white ceramic, ~12cm diameter, ~6cm tall (matches real setup) -->
+    <body name="bowl" pos="$(arg tray_x) $(arg tray_y) $(arg tray_z)">
+      <!-- Bowl approximated as a cylinder with open top -->
+      <geom name="bowl_base" type="cylinder" size="0.055 0.002" material="bowl" friction="0.7 0.1 0.1" />
+      <geom name="bowl_wall" type="cylinder" size="0.06 0.03" pos="0 0 0.03" material="bowl"
+            friction="0.7 0.1 0.1" contype="1" conaffinity="1" shellinertia="true" />
+      <geom name="bowl_inner" type="cylinder" size="0.052 0.028" pos="0 0 0.032"
+            contype="0" conaffinity="0" group="3" rgba="0 0 0 0" />
     </body>
-    <body name="cube_medium" pos="$(arg cube_medium_x) $(arg cube_medium_y) $(arg cube_medium_z)">
-      <freejoint name="cube_medium_joint" />
-      <geom name="cube_medium_geom" type="box" size="0.0156 0.0156 0.0156" mass="0.04" material="cube_medium" friction="0.7 0.1 0.1" />
-    </body>
-    <body name="cube_large" pos="$(arg cube_large_x) $(arg cube_large_y) $(arg cube_large_z)">
-      <freejoint name="cube_large_joint" />
-      <geom name="cube_large_geom" type="box" size="0.0188 0.0188 0.0188" mass="0.08" material="cube_large" friction="0.7 0.1 0.1" />
+    <!-- Single blue cube (matches real training scene) -->
+    <body name="cube_blue" pos="$(arg cube_large_x) $(arg cube_large_y) $(arg cube_large_z)">
+      <freejoint name="cube_blue_joint" />
+      <geom name="cube_blue_geom" type="box" size="0.0125 0.0125 0.0125" mass="0.02" material="cube_blue" friction="0.7 0.1 0.1" />
     </body>
   </worldbody>
 </mujoco>

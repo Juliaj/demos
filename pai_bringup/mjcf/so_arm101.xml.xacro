@@ -371,6 +371,9 @@
                   pos="-0.0079 -0.000218121 -0.0981274"
                   quat="0.707107 -0 0.707107 -2.37788e-17"
                 />
+                <!-- Wrist camera: mounted on gripper, looking forward/down along approach direction -->
+                <site name="wrist_camera_frame" pos="0.0 0.0 -0.05" euler="1.5708 0 0"/>
+                <camera name="wrist" fovy="58" mode="fixed" resolution="640 480" pos="0.0 0.0 -0.05" euler="1.5708 0 0"/>
                 <!-- Link jaw -->
                 <body
                   name="jaw_link"
@@ -409,9 +412,10 @@
           </body>
         </body>
       </body>
-      <!-- Camera: elevated above workspace for full scene visibility (table, tray, cubes, gripper) -->
-      <site name="camera_color_mujoco_frame" pos="0.25 0.0 0.55" euler="0 -0.7 0"/>
-      <camera name="camera" fovy="52" mode="fixed" resolution="1280 720" pos="0.25 0.0 0.55" euler="0 -0.7 0"/>
+      <!-- Front camera: matches real setup — on a pole 61cm above table, 28cm behind workspace center.
+           Position is relative to base_link (which has 180° yaw, so local +x = world -x). -->
+      <site name="front_camera_frame" pos="-0.05 0.0 0.6" euler="0 -0.43 0"/>
+      <camera name="front" fovy="58" mode="fixed" resolution="640 480" pos="-0.05 0.0 0.6" euler="0 -0.43 0"/>
     </body>
   </worldbody>
 

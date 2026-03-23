@@ -17,12 +17,20 @@
     x="$(arg arm_base_x)" y="$(arg arm_base_y)" z="$(arg arm_base_z)"
     roll="$(arg arm_base_roll)" pitch="$(arg arm_base_pitch)" yaw="$(arg arm_base_yaw)" />
 
-  <!-- Overhead camera link -->
-  <link name="camera_color_mujoco_frame"/>
-  <joint name="camera_color_mujoco_joint" type="fixed">
+  <!-- Front camera: on a pole behind the workspace, looking steeply down -->
+  <link name="front_camera_frame"/>
+  <joint name="front_camera_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="camera_color_mujoco_frame"/>
-    <origin xyz="0.0 0.0 0.5" rpy="0 2.356 0.0"/>
+    <child link="front_camera_frame"/>
+    <origin xyz="-0.05 0.0 0.6" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wrist camera: mounted on gripper, looking forward along approach direction -->
+  <link name="wrist_camera_frame"/>
+  <joint name="wrist_camera_joint" type="fixed">
+    <parent link="gripper_link"/>
+    <child link="wrist_camera_frame"/>
+    <origin xyz="0.0 0.0 -0.05" rpy="0 0 0"/>
   </joint>
 
   <!-- ros2_control information including camera sensor -->
@@ -94,12 +102,20 @@
       <state_interface name="velocity" />
     </joint>
 
-    <!-- Camera informatiom -->
-    <sensor name="camera">
-      <param name="frame_name">camera_color_mujoco_frame</param>
-      <param name="info_topic">/camera/info</param>
-      <param name="image_topic">/camera</param>
-      <param name="depth_topic">/camera/depth</param>
+    <!-- Front camera (name must match MJCF <camera name="front">) -->
+    <sensor name="front">
+      <param name="frame_name">front_camera_frame</param>
+      <param name="info_topic">/front/camera_info</param>
+      <param name="image_topic">/front/image_raw</param>
+      <param name="depth_topic">/front/depth</param>
+    </sensor>
+
+    <!-- Wrist camera (name must match MJCF <camera name="wrist">) -->
+    <sensor name="wrist">
+      <param name="frame_name">wrist_camera_frame</param>
+      <param name="info_topic">/wrist/camera_info</param>
+      <param name="image_topic">/wrist/image_raw</param>
+      <param name="depth_topic">/wrist/depth</param>
     </sensor>
   </ros2_control>
 
