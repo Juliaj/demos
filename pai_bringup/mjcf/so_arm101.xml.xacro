@@ -414,8 +414,8 @@
       </body>
       <!-- Front camera: matches real setup — on a pole 61cm above table, 28cm behind workspace center.
            Position is relative to base_link (which has 180° yaw, so local +x = world -x). -->
-      <site name="front_camera_frame" pos="-0.05 0.0 0.6" euler="0 -0.43 0"/>
-      <camera name="front" fovy="58" mode="fixed" resolution="640 480" pos="-0.05 0.0 0.6" euler="0 -0.43 0"/>
+      <site name="front_camera_frame" pos="0.1 0.0 0.6" euler="0 -1.2 0"/>
+      <camera name="front" fovy="58" mode="fixed" resolution="640 480" pos="0.1 0.0 0.6" euler="0 -1.2 0"/>
     </body>
   </worldbody>
 
@@ -472,4 +472,5 @@
     <exclude body1="wrist_link" body2="gripper_link" />
     <exclude body1="gripper_link" body2="jaw_link" />
   </contact>
+
 </mujoco>

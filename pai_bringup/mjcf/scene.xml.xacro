@@ -76,4 +76,14 @@
       <geom name="cube_blue_geom" type="box" size="0.0125 0.0125 0.0125" mass="0.02" material="cube_blue" friction="0.7 0.1 0.1" />
     </body>
   </worldbody>
+
+  <!-- Resting pose matching real SO-ARM101 power-on position.
+       qpos order: 6 arm joints, then cube freejoint (x y z qw qx qy qz).
+       ctrl order: 6 actuators (arm joints only). -->
+  <keyframe>
+    <key name="rest"
+         qpos="0.103 -1.793 1.54 1.226 -0.120 0.0
+               $(arg cube_large_x) $(arg cube_large_y) $(arg cube_large_z) 1 0 0 0"
+         ctrl="0.103 -1.793 1.54 1.226 -0.120 0.0"/>
+  </keyframe>
 </mujoco>

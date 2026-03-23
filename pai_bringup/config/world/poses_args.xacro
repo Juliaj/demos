@@ -11,9 +11,9 @@
     <xacro:arg name="table_roll" default="0.0"/>
     <xacro:arg name="table_pitch" default="0.0"/>
     <xacro:arg name="table_yaw" default="0.0"/>
-    <!-- tray -->
+    <!-- bowl (reuses tray args; positioned left of arm to match real setup) -->
     <xacro:arg name="tray_x" default="0.06"/>
-    <xacro:arg name="tray_y" default="0.0"/>
+    <xacro:arg name="tray_y" default="0.13"/>
     <xacro:arg name="tray_z" default="0.3945"/>
     <xacro:arg name="tray_roll" default="0.0"/>
     <xacro:arg name="tray_pitch" default="0.0"/>
@@ -32,10 +32,10 @@
     <xacro:arg name="cube_medium_roll" default="0.0"/>
     <xacro:arg name="cube_medium_pitch" default="0.0"/>
     <xacro:arg name="cube_medium_yaw" default="0.0"/>
-    <!-- cube_large -->
-    <xacro:arg name="cube_large_x" default="0.26"/>
-    <xacro:arg name="cube_large_y" default="0.12"/>
-    <xacro:arg name="cube_large_z" default="0.4118"/>
+    <!-- cube_large (blue cube; centered on table, in front of arm) -->
+    <xacro:arg name="cube_large_x" default="0.12"/>
+    <xacro:arg name="cube_large_y" default="-0.05"/>
+    <xacro:arg name="cube_large_z" default="0.42"/>
     <xacro:arg name="cube_large_roll" default="0.0"/>
     <xacro:arg name="cube_large_pitch" default="0.0"/>
     <xacro:arg name="cube_large_yaw" default="0.0"/>

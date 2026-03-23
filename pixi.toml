@@ -137,6 +137,9 @@ ros-kilted-rclcpp = "*"
 ros-kilted-pluginlib = "*"
 # Zenoh middleware
 ros-kilted-rmw-zenoh-cpp = "*"
+# C library for libmujoco_ros2_control.so
+libmujoco = ">=3.4.0,<3.5"
+ros-kilted-image-view = ">=6.0.11,<7"
 
 [pypi-dependencies]
 huggingface-hub = "*"
